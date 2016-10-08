@@ -7,6 +7,7 @@ struct list * deletehead(list *root);
 void listprint(list *lst);
 struct list * swap(struct list *lst1, struct list *lst2, struct list *head);
 struct list *search(struct list *list, int find_num);
+void * addToMiddle(list *lst, int after, int number);
 
 struct list {
     int field; // поле данных

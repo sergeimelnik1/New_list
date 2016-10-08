@@ -1,7 +1,7 @@
 #include "iostream"
 #include "list.h"
 
-struct list * init(int a) { // а- значение первого узла
+list * init(int a) { // а- значение первого узла
     struct list *lst;
     // выделение памяти под корень списка
     lst = (struct list*)malloc(sizeof(struct list));
@@ -10,7 +10,7 @@ struct list * init(int a) { // а- значение первого узла
     lst->prev = NULL; // указатель на предыдущий узел
     return lst;
 }
-struct list * add_elem_end(list *lst, int number) {
+list * add_elem_end(list *lst, int number) {
     struct list *temp, *p;
     temp = (struct list*)malloc(sizeof(list));//выделение памяти
     p = lst->next; // сохранение указателя на следующий узел
@@ -22,7 +22,7 @@ struct list * add_elem_end(list *lst, int number) {
         p->prev = temp;
     return temp;
 }
-struct list * addToStart(list *lst, int number){
+list * addToStart(list *lst, int number){
     struct list *curr = new list;
     curr->field = number;
     curr->prev = NULL;
@@ -31,7 +31,15 @@ struct list * addToStart(list *lst, int number){
    
     return lst;
 }
-struct list * delete_elem(list *lst, int n) {
+void addToMiddle(list **lst, int after, int number){
+    struct list *new_elem = new list;
+    struct list *find_elem = search(*lst,after);
+    struct list *p = find_elem ->next;
+    find_elem->next =new_elem;
+    new_elem->next = p;
+    p->prev= new_elem;
+}
+list * delete_elem(list *lst, int n) {
    struct list *find_elem = search(lst,n);
     struct list *prev, *next;
     prev = find_elem->prev; // узел, предшествующий lst
@@ -43,7 +51,7 @@ struct list * delete_elem(list *lst, int n) {
     free(find_elem); // освобождаем память удаляемого элемента
     return prev;
 }
-struct list * deletehead(list *root) {
+list * deletehead(list *root) {
     struct list *temp;
     temp = root->next;
     temp->prev = NULL;
