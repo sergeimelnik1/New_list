@@ -1,29 +1,36 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <iostream>
-#include "list.h"
+
+#include "stdafx.h"
+#include "iostream"
+#include "double_line.h"
 
 
-
-int main() {
-    list *head, *cur;
-    int num;
-    // Создаем список из 10 элементов
-    cout << "a = ";
-    cin >> num;
-    head = init(num);
-    cur = head;
-    for (int i = 0; i < 9; i++) {
-        cout << "a = ";
-        cin >> num;
-        cur = add_elem_end(cur, num);
-    }
-    listprint(head);
-    cout << endl;
-    // Удаляем третий элемент списка
-//    cur = head->next->next;
-    delete_elem(cur, 3);
-    listprint(head);
-    cout << endl;
-    return 0;
+int _tmain(int argc, _TCHAR* argv[])
+{
+	List*head, *cur;
+	int num;
+	cout << "a=  ";
+	cin >> num;
+	head = createlist(num);
+	cur = head;
+	for (int i = 0; i < 9; i++) {
+		cout << "a = ";
+		cin >> num;
+		cur = addToend(cur, num);
+	}
+	printlist(head);
+	cout << endl;
+	// Удаляем элемент со значением 3
+	deleteElem(&head, 3);
+	printlist(head);
+	cout << endl;
+	//Добавление элемента co значением 4 после элемента со значением 6
+	addTomiddle(&head, 4, 6);
+	printlist(head);
+	cout << endl;
+	// Сортировка элементов по возрастанию
+	sort(&head);
+	printlist(head);
+	system("PAUSE");
+	return 0;
 }
+
